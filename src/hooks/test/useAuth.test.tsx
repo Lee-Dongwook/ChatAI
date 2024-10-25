@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
-import { setDoc, updateDoc } from 'firebase/firestore';
+import { auth } from '../../../firebaseConfig';
+import { setDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { setUser, clearUser, setError } from '@/redux/slice/authSlice';
 import { useAuth } from '@/hooks/useAuth';
@@ -35,10 +36,13 @@ describe('useAuth', () => {
 
   it('회원가입 성공 시 Firestore에 사용자 정보 저장', async () => {
     const mockUser = { uid: 'user1', email: 'test@test.com' };
+    const mockDocRef = {};
+
     (createUserWithEmailAndPassword as jest.Mock).mockResolvedValue({
       user: mockUser,
     });
     (setDoc as jest.Mock).mockResolvedValueOnce(undefined);
+    (doc as jest.Mock).mockReturnValue(mockDocRef);
 
     const { result } = renderHook(() => useAuth(), {
       wrapper: createWrapper(),
@@ -52,13 +56,13 @@ describe('useAuth', () => {
     });
 
     expect(createUserWithEmailAndPassword).toHaveBeenCalledWith(
-      expect.anything(),
+      auth,
       'test@test.com',
       'password'
     );
 
     expect(setDoc).toHaveBeenCalledWith(
-      expect.anything(),
+      mockDocRef,
       expect.objectContaining({
         userId: 'user1',
         email: 'test@test.com',
@@ -70,10 +74,15 @@ describe('useAuth', () => {
 
   it('로그인 성공 시 Firestore에 lastLogin 업데이트', async () => {
     const mockUser = { uid: 'user1', email: 'test@test.com' };
+    const mockDocRef = {};
+    const mockTimestamp = { seconds: 16288880000, nanosceonds: 0 };
+
     (signInWithEmailAndPassword as jest.Mock).mockResolvedValue({
       user: mockUser,
     });
     (updateDoc as jest.Mock).mockResolvedValueOnce(undefined);
+    (doc as jest.Mock).mockReturnValue(mockDocRef);
+    (serverTimestamp as jest.Mock).mockReturnValue(mockTimestamp);
 
     const { result } = renderHook(() => useAuth(), {
       wrapper: createWrapper(),
@@ -87,13 +96,13 @@ describe('useAuth', () => {
     });
 
     expect(signInWithEmailAndPassword).toHaveBeenCalledWith(
-      expect.anything(),
+      auth,
       'test@test.com',
       'password'
     );
 
-    expect(updateDoc).toHaveBeenCalledWith(expect.anything(), {
-      lastLogin: expect.any(Object),
+    expect(updateDoc).toHaveBeenCalledWith(mockDocRef, {
+      lastLogin: mockTimestamp,
     });
 
     expect(dispatch).toHaveBeenCalledWith(setUser(expect.any(Object)));
