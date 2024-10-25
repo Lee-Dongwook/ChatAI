@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AuthLayout } from '@/components/layouts/AuthLayout';
+import { AuthLayout } from '@/components/organisms/AuthLayout';
 
 export default function AuthPage() {
   return <AuthLayout />;

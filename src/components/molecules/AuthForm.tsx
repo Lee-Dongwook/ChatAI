@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { ErrorMessage } from '@/components/ui/ErrorMessage';
+import { Input } from '@/components/atoms/Input';
+import { Button } from '@/components/atoms/Button';
+import { ErrorMessage } from '@/components/atoms/ErrorMessage';
 
 interface AuthFormProps {
   onSubmit: (email: string, password: string) => void;

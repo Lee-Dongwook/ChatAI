@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { AuthForm } from '@/components/auth/AuthForm';
+import { AuthForm } from '@/components/molecules/AuthForm';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/redux/store';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/atoms/Button';
 
 export const AuthContainer: React.FC = () => {
   const { signUp, login, logOut } = useAuth();

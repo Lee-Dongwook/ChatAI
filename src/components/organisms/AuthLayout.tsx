@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthContainer } from '@/components/auth/AuthContainer';
+import { AuthContainer } from '@/components/containers/AuthContainer';
 
 export const AuthLayout: React.FC = () => {
   return (
