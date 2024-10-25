@@ -1,11 +1,11 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from 'firebase/firestore';
 
 // 1. Users
-export type UserRole = "user" | "admin" | "premium";
+export type UserRole = 'user' | 'admin' | 'premium';
 
 export interface UserPreference {
-  theme: "light" | "dark";
-  language: "en" | "ko";
+  theme: 'light' | 'dark';
+  language: 'en' | 'ko';
 }
 
 export interface User {
@@ -20,8 +20,8 @@ export interface User {
 }
 
 // 2. Chats
-export type MessageType = "text" | "image" | "link";
-export type Sender = "user" | "bot";
+export type MessageType = 'text' | 'image' | 'link';
+export type Sender = 'user' | 'bot';
 
 export interface ChatMessage {
   message: string;
@@ -47,9 +47,9 @@ export interface Feedback {
 
 //4. Analytics
 export type AnalyticsEvent =
-  | "message_sent"
-  | "session_started"
-  | "feedback_given";
+  | 'message_sent'
+  | 'session_started'
+  | 'feedback_given';
 
 export interface Analytics {
   userId: string;
