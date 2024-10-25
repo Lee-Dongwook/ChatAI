@@ -47,3 +47,46 @@
 [Vercel](https://vercel.com/): Next.js 애플리케이션 배포를 위한 플랫폼.
 
 [Firebase Hosting](https://firebase.google.com/products/hosting): 정적 파일 호스팅 및 백엔드 서비스 제공
+
+
+## 프로젝트 구조도
+
+```
+.
+└── src/
+    ├── app/
+    │   ├── auth/
+    │   │   ├── layout.tsx
+    │   │   └── page.tsx
+    │   ├── chat/
+    │   │   ├── [sessionId]/
+    │   │   │   ├── layout.tsx
+    │   │   │   └── page.tsx
+    │   │   ├── layout.tsx
+    │   │   └── page.tsx
+    │   ├── dashboard/
+    │   │   ├── layout.tsx
+    │   │   └── page.tsx
+    │   ├── profile/
+    │   │   ├── layout.tsx
+    │   │   └── page.tsx
+    │   ├── page.tsx
+    │   └── layout.tsx
+    ├── components/
+    │   ├── atoms/
+    │   │   └── ...
+    │   ├── containers /
+    │   │   └── ...
+    │   ├── molecules/
+    │   │   └── ...
+    │   └── organisms/
+    │       └── ...
+    ├── hooks/
+    │   ├── test/
+    │   │   └── ...
+    │   └── ...
+    ├── lib
+    ├── providers
+    ├── redux
+    └── types
+```
