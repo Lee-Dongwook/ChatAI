@@ -1,0 +1,9 @@
+# Node modules
+node_modules
+
+# 빌드 디렉토리
+.next
+
+# 환경 변수 파일
+.env
+.env.local
