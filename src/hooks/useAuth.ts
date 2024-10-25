@@ -108,5 +108,24 @@ export const useAuth = () => {
     },
   });
 
-  return { signUp, login, logOut };
+  return {
+    signUp: {
+      mutate: signUp.mutate,
+      isPending: signUp.isPending,
+      isError: signUp.isError,
+      error: signUp.error,
+    },
+    login: {
+      mutate: login.mutate,
+      isPending: login.isPending,
+      isError: login.isError,
+      error: login.error,
+    },
+    logOut: {
+      mutate: logOut.mutate,
+      isPending: logOut.isPending,
+      isError: logOut.isError,
+      error: logOut.error,
+    },
+  };
 };
