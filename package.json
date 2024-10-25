@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
@@ -40,6 +42,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-storybook": "^0.10.1",
+    "husky": "^9.1.6",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "storybook": "^8.3.6",
