@@ -48,7 +48,6 @@
 
 [Firebase Hosting](https://firebase.google.com/products/hosting): 정적 파일 호스팅 및 백엔드 서비스 제공
 
-
 ## 프로젝트 구조도
 
 ```
