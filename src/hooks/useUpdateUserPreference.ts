@@ -9,15 +9,27 @@ export const useUpdateUserPreference = (userId: string) => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: async (newPreference: UserPreference) => {
+  const mutation = useMutation({
+    mutationFn: async (updatePreference: UserPreference) => {
       const docRef = doc(db, 'users', userId);
-      await updateDoc(docRef, { newPreference });
-      return newPreference;
+
+      await updateDoc(docRef, {
+        'preference.theme': updatePreference.theme,
+        'preference.language': updatePreference.language,
+      });
+
+      return updatePreference;
     },
     onSuccess: (preference) => {
       dispatch(setUserPreference(preference));
       queryClient.invalidateQueries({ queryKey: ['userProfile', userId] });
     },
   });
+
+  return {
+    updatePreference: mutation.mutate,
+    isPending: mutation.isPending,
+    isError: mutation.isError,
+    error: mutation.error,
+  };
 };

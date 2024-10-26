@@ -6,7 +6,7 @@ interface SpinnerProps {
   className?: string;
 }
 
-const Spinner: React.FC<SpinnerProps> = ({
+export const Spinner: React.FC<SpinnerProps> = ({
   size = 24,
   color = '#000',
   className = '',
@@ -38,5 +38,3 @@ const Spinner: React.FC<SpinnerProps> = ({
     </svg>
   );
 };
-
-export default Spinner;
