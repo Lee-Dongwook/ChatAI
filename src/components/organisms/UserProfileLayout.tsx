@@ -1,43 +1,45 @@
 import React, { useState } from 'react';
-import { useUserProfile } from '@/hooks/useUserProfile';
-import { useUpdateUserProfile } from '@/hooks/useUpdateUserProfile';
-import { useUpdateUserPreference } from '@/hooks/useUpdateUserPreference';
 import { Button } from '@/components/atoms/Button';
-import { Spinner } from '@/components/atoms/Spinner';
 import { Input } from '@/components/atoms/Input';
 import { UserCard } from '@/components/molecules/UserCard';
 import { UserPreferenceForm } from '@/components/molecules/UserPreferenceForm';
-import type { UserPreference } from '@/types';
+import type { User, UserPreference } from '@/types';
 
-interface UserProfileProps {
-  userId: string;
+interface UserProfileLayoutProps {
+  user: User;
+  isProfileUpdating: boolean;
+  isPreferenceUpdating: boolean;
+  onProfileSave: (profileData: {
+    name: string;
+    profilePicture?: File | null;
+  }) => void;
+  onPreferenceSave: (preference: UserPreference) => void;
 }
 
-export const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
-  const { data: user, isLoading, isError } = useUserProfile(userId);
-  const { updateProfile, isPending: isProfileUpdating } =
-    useUpdateUserProfile(userId);
-
-  const { updatePreference, isPending: isPreferenceUpdating } =
-    useUpdateUserPreference(userId);
-
-  const [name, setName] = useState<string>(user?.name || '');
+export const UserProfileLayout: React.FC<UserProfileLayoutProps> = ({
+  user,
+  isProfileUpdating,
+  isPreferenceUpdating,
+  onProfileSave,
+  onPreferenceSave,
+}) => {
+  const [name, setName] = useState<string>(user.name);
   const [profilePicture, setProfilePicture] = useState<File | undefined>(
     undefined
   );
   const [theme] = useState<UserPreference['theme']>(
-    user?.preference.theme || 'light'
+    user.preference.theme || 'light'
   );
   const [language] = useState<UserPreference['language']>(
-    user?.preference.language || 'en'
+    user.preference.language || 'en'
   );
 
   const handleProfileSave = () => {
-    updateProfile({ name, profilePicture });
+    onProfileSave({ name, profilePicture });
   };
 
   const handlePreferenceSave = () => {
-    updatePreference({ theme, language });
+    onPreferenceSave({ theme, language });
   };
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,10 +54,6 @@ export const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
       setProfilePicture(file);
     }
   };
-
-  if (isLoading) return <Spinner />;
-  if (isError || !user)
-    return <p className="text-red-500">Failed to load user profile.</p>;
 
   return (
     <div className="p-4 space-y-4">
@@ -81,10 +79,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ userId }) => {
           onChange={handleChangeProfilePicture}
           className="p-2 border rounded-lg"
         />
-        <Button
-          onClick={handleProfileSave}
-          disabled={isProfileUpdating || isLoading}
-        >
+        <Button onClick={handleProfileSave} disabled={isProfileUpdating}>
           {isProfileUpdating ? 'Updating...' : 'Save Profile'}
         </Button>
       </div>
