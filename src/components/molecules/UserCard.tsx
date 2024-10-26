@@ -6,7 +6,7 @@ interface UserCardProps {
   name: string;
   email: string;
   profilePicture?: string | null;
-  role: 'user' | 'admin';
+  role: 'user' | 'admin' | 'premium';
   lastLogin: Timestamp;
 }
 
