@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { AuthContainer } from '@/components/containers/AuthContainer';
 

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { Avatar } from '@/components/atoms/Avatar';

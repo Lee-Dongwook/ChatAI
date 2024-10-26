@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Spinner } from '@/components/atoms/Spinner';
 import { UserProfileLayout } from '@/components/organisms/UserProfileLayout';
