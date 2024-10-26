@@ -6,7 +6,7 @@ import {
   Timestamp,
 } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
-import type { Analytics, AnalyticsEvent } from '@/types';
+import type { Analytics } from '@/types';
 
 export const useAnalytics = () => {
   return useMutation({
