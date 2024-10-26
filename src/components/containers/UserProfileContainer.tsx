@@ -10,7 +10,7 @@ interface UserProfileContainerProps {
   userId: string;
 }
 
-const UserProfileContainer: React.FC<UserProfileContainerProps> = ({
+export const UserProfileContainer: React.FC<UserProfileContainerProps> = ({
   userId,
 }) => {
   const { data: user, isLoading, isError } = useUserProfile(userId);
@@ -40,5 +40,3 @@ const UserProfileContainer: React.FC<UserProfileContainerProps> = ({
     />
   );
 };
-
-export default UserProfileContainer;

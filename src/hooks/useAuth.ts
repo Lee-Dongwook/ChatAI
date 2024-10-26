@@ -13,9 +13,10 @@ import {
   serverTimestamp,
   Timestamp,
 } from 'firebase/firestore';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser, clearUser, setError } from '@/redux/slice/authSlice';
 import type { User } from '@/types';
+import type { RootState } from '@/redux/store';
 
 interface AuthParams {
   email: string;
@@ -24,6 +25,8 @@ interface AuthParams {
 
 export const useAuth = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.auth.user);
+  const isAuthenticated = !!user;
 
   const signUp = useMutation({
     mutationFn: async ({ email, password }: AuthParams) => {
@@ -109,6 +112,8 @@ export const useAuth = () => {
   });
 
   return {
+    user,
+    isAuthenticated,
     signUp: {
       mutate: signUp.mutate,
       isPending: signUp.isPending,

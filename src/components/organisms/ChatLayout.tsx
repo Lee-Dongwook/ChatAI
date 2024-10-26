@@ -21,6 +21,7 @@ export const ChatLayout: React.FC<ChatLayoutProps> = ({
       <div className="flex-1 overflow-y-auto p-4 space-y-2">
         {messages.map((msg) => (
           <MessageBubble
+            key={msg.sender}
             message={msg.message}
             sender={msg.sender}
             timestamp={msg.createdAt}
