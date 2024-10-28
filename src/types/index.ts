@@ -25,6 +25,7 @@ export type MessageType = 'text' | 'image' | 'link';
 export type Sender = 'user' | 'bot';
 
 export interface ChatMessage {
+  id?: string;
   message: string;
   sender: Sender;
   createdAt: Timestamp;
