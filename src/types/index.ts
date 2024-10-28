@@ -1,4 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
+import { Key } from 'react';
 
 // 1. Users
 export type UserRole = 'user' | 'admin' | 'premium';
@@ -31,6 +32,7 @@ export interface ChatMessage {
 }
 
 export interface ChatSession {
+  id?: Key | null | undefined;
   sessionName: string;
   createdAt: Timestamp;
   lastActivity: Timestamp;
