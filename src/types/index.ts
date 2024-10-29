@@ -41,6 +41,7 @@ export interface ChatSession {
 
 // 3. Feedback
 export interface Feedback {
+  id?: string;
   userId: string;
   sessionId: string;
   rating: number; // 1 to 5
