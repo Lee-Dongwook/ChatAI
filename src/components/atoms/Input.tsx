@@ -12,7 +12,7 @@ interface InputProps {
 
 export const Input: React.FC<InputProps> = ({
   type,
-  placeholder,
+  placeholder = 'Type Something',
   value,
   onChange,
   className,

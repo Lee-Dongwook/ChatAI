@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  options: { value: string; label: string }[];
+  options: Array<{ value: string; label: string }>;
   className?: string;
 }
 
@@ -13,14 +13,15 @@ export const Select: React.FC<SelectProps> = ({
 }) => {
   return (
     <select
-      className={`border border-gray-300 rounded-lg p-2 ${className}`}
+      className={`w-48 border border-gray-300 rounded-lg p-2 ${className}`}
       {...props}
     >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
+      {options &&
+        options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
     </select>
   );
 };
